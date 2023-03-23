@@ -10,10 +10,13 @@ export class SubsystemControlService {
 
   toFormGroup(sub_system: SubSystemModel) : FormGroup{
     let group: any = {};
+    let subgroup: any = {};
     sub_system.components.forEach(component => {
       component.attributes.forEach(question => {
-        group[component.key +'_'+question.key] = new FormControl(question.value, Validators.required);
-      })
+        subgroup[question.key] = new FormControl(question.value, Validators.required);
+      });
+      group[component.key] = new FormGroup(subgroup)
+      subgroup = {}
     })
     return new FormGroup(group)
   }

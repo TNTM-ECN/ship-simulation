@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {QuestionBaseModel} from "../../models/question-base.model";
 import {FormGroup} from "@angular/forms";
-import {SubSystemModel} from "../../models/sub-system.model";
 
 @Component({
   selector: 'app-dynamic-question',
@@ -16,6 +15,6 @@ export class DynamicQuestionComponent {
     // console.log(this.form.controls)
     // console.log(this.component)
     // console.log(this.question)
-    return this.form.controls[this.component + '_' + this.question.key].valid;
+    return this.form.get(this.component + '.' + this.question.key)?.valid;
   }
 }

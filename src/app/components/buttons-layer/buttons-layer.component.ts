@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {SubSystemModel} from "../../models/sub-system.model";
 
 import propellerSubsystem from '../../../assets/propulsion.json'
-import {QuestionBaseModel} from "../../models/question-base.model";
 
 @Component({
   selector: 'app-buttons-layer',
@@ -19,7 +18,7 @@ export class ButtonsLayerComponent implements OnInit {
   }
   public subSystemView$!: Observable<string>;
 
-  buttonView(system: string, value: boolean): void {
+  buttonView(system: string): void {
     this.buttonLayerService.setSubsystemView(system)
   }
 
