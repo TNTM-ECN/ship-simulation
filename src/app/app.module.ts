@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ButtonsLayerComponent } from './components/buttons-layer/buttons-layer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material.module";
-import { PropulsionMenuComponent } from './components/propulsion-menu/propulsion-menu.component';
+// import { PropulsionMenuComponent } from './components/propulsion-menu/propulsion-menu.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DynamicQuestionComponent } from './components/dynamic-question/dynamic-question.component';
 import { SubSystemCardComponent } from './components/sub-system-card/sub-system-card.component';
@@ -16,7 +16,7 @@ import { SubSystemCardComponent } from './components/sub-system-card/sub-system-
   declarations: [
     AppComponent,
     ButtonsLayerComponent,
-    PropulsionMenuComponent,
+    // PropulsionMenuComponent,
     DynamicQuestionComponent,
     SubSystemCardComponent
   ],
