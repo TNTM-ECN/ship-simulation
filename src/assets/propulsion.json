@@ -1,0 +1,52 @@
+{
+  "name": "Propulsion",
+  "components": [
+
+    {
+      "key": "propeller",
+      "label": "Propeller",
+      "attributes": [
+        {
+          "label": "Diameter",
+          "key": "diameter",
+          "value": null,
+          "controlType": "number",
+          "required": true,
+          "order": 1,
+          "type": "",
+          "options": []
+        },
+        {
+          "label": "Pitch",
+          "key": "pitch",
+          "value": null,
+          "controlType": "number",
+          "required":  true,
+          "order": 2,
+          "type":  "",
+          "options": []
+        },
+        {
+          "label": "Number of blade",
+          "key": "z_blade",
+          "value": null,
+          "controlType": "number",
+          "required":  true,
+          "order": 0,
+          "type":  "",
+          "options": []
+        },
+        {
+          "label": "Disk area",
+          "key": "disk_area",
+          "value": null,
+          "controlType": "number",
+          "required":  true,
+          "order": 3,
+          "type":  "",
+          "options": []
+        }
+      ]
+    }
+  ]
+}

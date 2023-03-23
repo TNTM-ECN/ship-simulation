@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{subSystem.name}} settings</mat-card-title>
+    <button mat-button (click)="onClose()"><mat-icon>close</mat-icon></button>
+  </mat-card-header>
+  <mat-card-content>
+
+  <div [formGroup]="checkboxControls">
+
+      <mat-label>Components available</mat-label>
+
+      <mat-checkbox *ngFor="let component of subSystem.components" [formControlName]="component.key">
+        {{component.label}}
+      </mat-checkbox>
+  </div>
+  <div *ngIf="enabledComponents$ | async as enabledComponents">
+    <mat-form-field>
+      <mat-label>Select an enabled component</mat-label>
+      <mat-select [formControl]="selectControl">
+        <mat-option *ngFor="let component of enabledComponents" [value]="component.key"> <!--enabledComponents as Observable-->
+          {{component.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="showedAttributes$ | async as showedAttributes">
+      <div *ngFor="let attribute of showedAttributes.attributes">
+      <app-dynamic-question [question]="attribute" [form]="form" [component]="showedAttributes.component_key">
+      </app-dynamic-question>
+      </div>
+    </div>
+  </div>
+  </mat-card-content>
+</mat-card>
