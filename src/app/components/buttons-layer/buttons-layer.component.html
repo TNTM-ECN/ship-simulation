@@ -16,5 +16,6 @@
   </button>
 </div>
 <ng-container [ngSwitch]="subSystemView$ | async">
-  <app-sub-system-card *ngSwitchCase="'propulsion'" [subSystem]="propeller" (close)="buttonView($event)"></app-sub-system-card>
+  <app-sub-system-card *ngSwitchCase="'propulsion'" [subSystem]="propeller" (close)="buttonView($event)" [(form)]="propellerForm"></app-sub-system-card>
+<!--  Il y a moyen de faire circuler le formGroup pour le récupérer et le réinjecter ci besoin-->
 </ng-container>

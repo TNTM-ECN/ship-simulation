@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {SubSystemModel} from "../../models/sub-system.model";
 
 import propellerSubsystem from '../../../assets/propulsion.json'
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-buttons-layer',
@@ -12,9 +13,11 @@ import propellerSubsystem from '../../../assets/propulsion.json'
 })
 export class ButtonsLayerComponent implements OnInit {
   propeller: SubSystemModel = new SubSystemModel(propellerSubsystem)
+  propellerForm!: FormGroup
 
 
-  constructor(private buttonLayerService: ButtonLayerService) {
+  constructor(private buttonLayerService: ButtonLayerService,
+              private formBuilder: FormBuilder) {
   }
   public subSystemView$!: Observable<string>;
 
@@ -26,8 +29,13 @@ export class ButtonsLayerComponent implements OnInit {
   //   this.setView("propulsion", true)
   // }
 
+  saveSubSystem(value: any) {
+    console.log(value)
+  }
+
   ngOnInit() {
     this.subSystemView$ = this.buttonLayerService.subSystemView$
+    this.propellerForm = this.formBuilder.group({})
   }
 
 

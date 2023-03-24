@@ -14,7 +14,11 @@ import {QuestionBaseModel} from "../../models/question-base.model";
 export class SubSystemCardComponent implements OnInit{
   @Input() subSystem: SubSystemModel = {components: [{label:"", key:"", attributes:[]}], name:""};
   @Output() close: EventEmitter<string> = new EventEmitter<string>()
-  form!: FormGroup;
+  @Output() formChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>()
+
+  @Input() form!: FormGroup;
+  // Il manque d'un controle de l'état avec tous les controles annexes (ie checkbox et select)
+  // on va passer les controles annexes dans this.form
   checkboxControls!: FormGroup;
   enabledComponents$!: Observable<ComponentModel[]>
   selectControl!: FormControl;
@@ -26,7 +30,7 @@ export class SubSystemCardComponent implements OnInit{
               private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.form = this.scs.toFormGroup(this.subSystem) // On va rajouter un test pour savoir si on n'a pas déjà des valeurs sauvegardées
+    this.form = this.form.value.length===0 ? this.form : this.scs.toFormGroup(this.subSystem) // On va rajouter un test pour savoir si on n'a pas déjà des valeurs sauvegardées
     this.initFormCtrl();
     this.initObservable();
     // console.log(this.form.value)
@@ -63,6 +67,11 @@ export class SubSystemCardComponent implements OnInit{
     })
     this.checkboxControls = this.formBuilder.group(group)
     this.selectControl = this.formBuilder.control("")
+    this.form = this.formBuilder.group({
+      subSystem: this.scs.toFormGroup(this.subSystem),
+      checkboxControl: this.formBuilder.group(group),
+      selectControl: this.formBuilder.control("")
+    })
   }
 
   onClose(){
@@ -71,7 +80,8 @@ export class SubSystemCardComponent implements OnInit{
   }
 
   dump(){
-    console.log(JSON.stringify(this.form.getRawValue()))
+    // console.log(this.form.getRawValue())
+    this.formChange.emit(this.form)
   }
 
 }
