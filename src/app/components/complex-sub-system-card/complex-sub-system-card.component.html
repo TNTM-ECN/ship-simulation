@@ -1,0 +1,43 @@
+<!--<script src="complex-sub-system-card.component.ts"></script>-->
+<mat-card [formGroup]="fullForm" class="mat-typography">
+  <mat-card-header>
+    <mat-card-title>{{subSystem.name}} settings</mat-card-title>
+    <button mat-button (click)="onClose()"><mat-icon>close</mat-icon></button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="grid-container">
+      <div [formGroupName]="'checkboxControls'" class="grid-item" id="checkboxs">
+        <h3>Components available :</h3>
+<!--        <mat-checkbox *ngFor="let component of subSystem.components" [formControlName]="component.key">-->
+<!--          {{component.label}}-->
+<!--        </mat-checkbox>-->
+        <mat-form-field *ngFor="let component of subSystem.components">
+          <mat-label>{{component.label}}</mat-label>
+          <input matInput type="number" min="0"  [formControlName]="component.key">
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="enabledComponents$ | async as enabledComponents" class="grid-item" id="selected_component">
+        <mat-form-field *ngIf="enabledComponents.length>0">
+          <mat-label>Select an enabled component</mat-label>
+          <mat-select [formControlName]="'selectControl'">
+            <mat-option *ngFor="let component of enabledComponents" [value]="component.key"> <!--enabledComponents as Observable-->
+              {{component.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="showedAttributes$ | async as showedAttributes" id="attributes">
+        <cdk-virtual-scroll-viewport itemSize="50" class="virtual-scroll">
+          <div *cdkVirtualFor="let attribute of showedAttributes.attributes" class="example-item">
+            <app-dynamic-question [question]="attribute" [form]="form" [component]="showedAttributes.component_key">
+            </app-dynamic-question>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions [align]="'end'">
+    <button mat-raised-button (click)="dump()">Save parameters</button>
+  </mat-card-actions>
+</mat-card>

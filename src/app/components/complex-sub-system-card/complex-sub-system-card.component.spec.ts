@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubSystemCardComponent } from './sub-system-card.component';
+import { ComplexSubSystemCardComponent } from './complex-sub-system-card.component';
 
 describe('SubSystemCardComponent', () => {
-  let component: SubSystemCardComponent;
-  let fixture: ComponentFixture<SubSystemCardComponent>;
+  let component: ComplexSubSystemCardComponent;
+  let fixture: ComponentFixture<ComplexSubSystemCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubSystemCardComponent ]
+      declarations: [ ComplexSubSystemCardComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SubSystemCardComponent);
+    fixture = TestBed.createComponent(ComplexSubSystemCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

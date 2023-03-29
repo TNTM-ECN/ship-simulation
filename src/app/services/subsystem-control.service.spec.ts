@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SubsystemControlService } from './subsystem-control.service';
+import { ComplexSubsystemControlService } from './complex-subsystem-control.service';
 
 describe('SubsystemControlService', () => {
-  let service: SubsystemControlService;
+  let service: ComplexSubsystemControlService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SubsystemControlService);
+    service = TestBed.inject(ComplexSubsystemControlService);
   });
 
   it('should be created', () => {

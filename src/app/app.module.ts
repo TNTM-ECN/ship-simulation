@@ -9,7 +9,7 @@ import { MaterialModule } from "./material.module";
 // import { PropulsionMenuComponent } from './components/propulsion-menu/propulsion-menu.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DynamicQuestionComponent } from './components/dynamic-question/dynamic-question.component';
-import { SubSystemCardComponent } from './components/sub-system-card/sub-system-card.component';
+import { ComplexSubSystemCardComponent } from './components/complex-sub-system-card/complex-sub-system-card.component';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { SubSystemCardComponent } from './components/sub-system-card/sub-system-
     ButtonsLayerComponent,
     // PropulsionMenuComponent,
     DynamicQuestionComponent,
-    SubSystemCardComponent
+    ComplexSubSystemCardComponent
   ],
   imports: [
     BrowserModule,

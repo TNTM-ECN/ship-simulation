@@ -5,7 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 @Injectable({
   providedIn: 'root'
 })
-export class SubsystemControlService {
+export class ComplexSubsystemControlService {
 
 
   toFormGroup(sub_system: SubSystemModel) : FormGroup{
