@@ -17,6 +17,9 @@
   <button mat-stroked-button id="navigation"        (click)="buttonView('navigation')">
     Navigation
   </button>
+  <button mat-stroked-button id="decontamination"        (click)="buttonView('decontamination')">
+    Decontamination
+  </button>
 </div>
 <div [ngSwitch]="subSystemView$ | async" id="container">
   <div id="inner-container">
