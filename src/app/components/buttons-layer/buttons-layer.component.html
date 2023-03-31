@@ -1,28 +1,29 @@
 <div id="button-container">
-  <button mat-stroked-button id="propulsion"        (click)="buttonView('propulsion')">
+  <button mat-stroked-button id="propulsion"        [disabled]="!(enableButtons$ | async)" (click)="buttonView('propulsion')">
     Propulsion
   </button>
-  <button mat-stroked-button id="energy_production" (click)="buttonView('energy_production')">
+  <button mat-stroked-button id="energy_production" [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
     Energy<br/>production
   </button>
-  <button mat-stroked-button id="hotel_load"        (click)="buttonView('hotel_load')">
+  <button mat-stroked-button id="hotel_load"        [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
     Hotel<br/>load
   </button>
-  <button mat-stroked-button id="hull"              (click)="buttonView('hull')">
+  <button mat-stroked-button id="hull"              [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
     Hull
   </button>
-  <button mat-stroked-button id="aerodynamics"      (click)="buttonView('aerodynamics')">
+  <button mat-stroked-button id="aerodynamics"      [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
     Aerodynamics
   </button>
-  <button mat-stroked-button id="navigation"        (click)="buttonView('navigation')">
+  <button mat-stroked-button id="navigation"        [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
     Navigation
   </button>
-  <button mat-stroked-button id="decontamination"        (click)="buttonView('decontamination')">
+  <button mat-stroked-button id="decontamination"   [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
     Decontamination
   </button>
 </div>
 <div [ngSwitch]="subSystemView$ | async" id="container">
   <div id="inner-container">
     <app-complex-sub-system-card *ngSwitchCase="'propulsion'" [subSystem]="propulsion" (close)="buttonView($event)" [(fullForm)]="propulsionForm"></app-complex-sub-system-card>
+    <app-complex-sub-system-card *ngSwitchCase="'empty'" [subSystem]="emptySubSystem" (close)="buttonView($event)" [(fullForm)]="emptyForm"></app-complex-sub-system-card>
   </div>
 </div>

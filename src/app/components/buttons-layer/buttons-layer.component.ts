@@ -12,17 +12,20 @@ import {FormBuilder, FormGroup} from "@angular/forms";
   styleUrls: ['./buttons-layer.component.sass']
 })
 export class ButtonsLayerComponent implements OnInit {
+  emptyForm!: FormGroup
+  emptySubSystem: SubSystemModel = new SubSystemModel({name: "empty", components:[]} )
   propulsion: SubSystemModel = new SubSystemModel(propellerSubsystem)
   propulsionForm!: FormGroup
+  enableButtons$!: Observable<boolean>;
+  subSystemView$!: Observable<string>;
 
 
   constructor(private buttonLayerService: ButtonLayerService,
               private formBuilder: FormBuilder) {
   }
-  public subSystemView$!: Observable<string>;
 
   buttonView(system: string): void {
-    this.buttonLayerService.setSubsystemView(system)
+    this.buttonLayerService.updateView(system)
   }
 
   // propulsionView(): void {
@@ -35,7 +38,9 @@ export class ButtonsLayerComponent implements OnInit {
 
   ngOnInit() {
     this.subSystemView$ = this.buttonLayerService.subSystemView$
+    this.enableButtons$ = this.buttonLayerService.enableButtons$
     this.propulsionForm = this.formBuilder.group({})
+    this.emptyForm = this.formBuilder.group({})
   }
 
 
