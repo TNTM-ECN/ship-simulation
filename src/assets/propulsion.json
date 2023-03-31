@@ -45,6 +45,16 @@
           "order": 3,
           "type":  "",
           "options": []
+        },
+        {
+          "label": "Efficiency",
+          "key": "efficiency",
+          "value": null,
+          "controlType": "number",
+          "required":  true,
+          "order": 4,
+          "type":  "",
+          "options": []
         }
       ]
     }
