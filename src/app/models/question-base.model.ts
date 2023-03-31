@@ -7,6 +7,7 @@ export class QuestionBaseModel<T> {
   controlType: "number" | "curve" | string;
   type: string;
   options: {key: string, value: string}[];
+  unit: string
 
   constructor(options: {
     value?: T;
@@ -17,6 +18,7 @@ export class QuestionBaseModel<T> {
     controlType?: "number" | "curve" | string;
     type?: string;
     options?: {key: string, value: string}[];
+    unit?:string;
   } = {}) {
     this.value = options.value;
     this.key = options.key || '';
@@ -26,5 +28,6 @@ export class QuestionBaseModel<T> {
     this.controlType = options.controlType || '';
     this.type = options.type || '';
     this.options = options.options || [];
+    this.unit = options.unit || '';
   }
 }

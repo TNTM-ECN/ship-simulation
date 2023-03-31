@@ -14,7 +14,8 @@
           "required": true,
           "order": 1,
           "type": "",
-          "options": []
+          "options": [],
+          "unit": "m"
         },
         {
           "label": "Pitch",
@@ -24,7 +25,8 @@
           "required":  true,
           "order": 2,
           "type":  "",
-          "options": []
+          "options": [],
+          "unit":  "m"
         },
         {
           "label": "Number of blade",
@@ -34,7 +36,8 @@
           "required":  true,
           "order": 0,
           "type":  "",
-          "options": []
+          "options": [],
+          "unit":  ""
         },
         {
           "label": "Disk area",
@@ -44,7 +47,8 @@
           "required":  true,
           "order": 3,
           "type":  "",
-          "options": []
+          "options": [],
+          "unit":  "m^2"
         },
         {
           "label": "Efficiency",
@@ -54,7 +58,8 @@
           "required":  true,
           "order": 4,
           "type":  "",
-          "options": []
+          "options": [],
+          "unit":  ""
         }
       ]
     }

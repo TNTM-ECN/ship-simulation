@@ -4,7 +4,8 @@
     <div [ngSwitch]="question.controlType">
       <input *ngSwitchCase="'number'" [formControlName]="question.key" matInput
              [id]="question.key" [type]="question.type">
-      <mat-error *ngIf="!isValid">{{question.label}} is required</mat-error>
+<!--      <mat-error *ngIf="!isValid">{{question.label}} is required</mat-error>-->
     </div>
+    <span matTextSuffix>{{question.unit}}</span>
   </mat-form-field>
 </div>
