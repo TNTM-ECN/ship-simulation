@@ -16,7 +16,6 @@
           <input matInput type="number" min="0"  [formControlName]="component.key">
         </mat-form-field>
       </div>
-
       <div *ngIf="enabledComponents$ | async as enabledComponents" class="grid-item" id="selected_component">
         <mat-form-field *ngIf="enabledComponents.length>0">
           <mat-label>Select an enabled component</mat-label>
@@ -28,16 +27,18 @@
         </mat-form-field>
       </div>
       <div *ngIf="showedAttributes$ | async as showedAttributes" id="attributes">
-        <cdk-virtual-scroll-viewport itemSize="50" class="virtual-scroll">
-          <div *cdkVirtualFor="let attribute of showedAttributes.attributes" class="example-item">
-            <app-dynamic-question [question]="attribute" [form]="form" [component]="showedAttributes.component_key">
-            </app-dynamic-question>
-          </div>
-        </cdk-virtual-scroll-viewport>
+          <button *ngIf="showedAttributes.attributes.length>0" mat-button class="text-button">Load a {{showedAttributes.component_key}} configuration</button>
+          <cdk-virtual-scroll-viewport itemSize="50" class="virtual-scroll">
+            <div *cdkVirtualFor="let attribute of showedAttributes.attributes" class="example-item">
+              <app-dynamic-question [question]="attribute" [form]="form" [component]="showedAttributes.component_key">
+              </app-dynamic-question>
+            </div>
+          </cdk-virtual-scroll-viewport>
       </div>
     </div>
   </mat-card-content>
   <mat-card-actions [align]="'end'">
-    <button mat-raised-button (click)="dump()">Save parameters</button>
+    <button mat-raised-button class="text-button">Load a propulsion configuration</button>
+    <button mat-raised-button class="text-button" (click)="dump()">Save parameters</button>
   </mat-card-actions>
 </mat-card>
