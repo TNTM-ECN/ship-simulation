@@ -17,8 +17,8 @@
   <button mat-stroked-button id="navigation"        [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
     Navigation
   </button>
-  <button mat-stroked-button id="decontamination"   [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
-    Decontamination
+  <button mat-stroked-button id="aftertreatment"    [disabled]="!(enableButtons$ | async)" (click)="buttonView('empty')">
+    Aftertreatment
   </button>
 </div>
 <div [ngSwitch]="subSystemView$ | async" id="container">
