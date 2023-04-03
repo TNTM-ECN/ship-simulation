@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build -- --base-href 'ship-simulation'
+    - run: npm run build -- --base-href 'https://tntm-ecn.github.io/ship-simulation'
     - uses: actions/upload-pages-artifact@v1
       with:
         path: 'dist/ship-simulation2'
