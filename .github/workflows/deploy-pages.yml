@@ -30,5 +30,7 @@ jobs:
     - run: npm run build --if-present
   
     - uses: actions/upload-pages-artifact@v1
+      with:
+        INPUT_PATH: 'dist'
     - uses: actions/deploy-pages@v2
     
