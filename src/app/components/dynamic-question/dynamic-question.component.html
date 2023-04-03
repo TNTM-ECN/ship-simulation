@@ -6,6 +6,6 @@
              [id]="question.key" [type]="question.type">
 <!--      <mat-error *ngIf="!isValid">{{question.label}} is required</mat-error>-->
     </div>
-    <span matTextSuffix>{{question.unit}}</span>
+    <span matTextSuffix [innerHTML]="question.unit | unit"></span>
   </mat-form-field>
 </div>

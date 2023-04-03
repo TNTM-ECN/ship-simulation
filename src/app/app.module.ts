@@ -10,7 +10,7 @@ import { MaterialModule } from "./material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DynamicQuestionComponent } from './components/dynamic-question/dynamic-question.component';
 import { ComplexSubSystemCardComponent } from './components/complex-sub-system-card/complex-sub-system-card.component';
-
+import { UnitPipe } from "./pipes/unit.pipe";
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { ComplexSubSystemCardComponent } from './components/complex-sub-system-c
     ButtonsLayerComponent,
     // PropulsionMenuComponent,
     DynamicQuestionComponent,
-    ComplexSubSystemCardComponent
+    ComplexSubSystemCardComponent,
+    UnitPipe
   ],
   imports: [
     BrowserModule,
