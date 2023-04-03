@@ -31,6 +31,6 @@ jobs:
   
     - uses: actions/upload-pages-artifact@v1
       with:
-        INPUT_PATH: 'dist'
+        path: 'dist/'
     - uses: actions/deploy-pages@v2
     
