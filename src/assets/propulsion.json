@@ -49,17 +49,6 @@
           "type":  "",
           "options": [],
           "unit":  "m^2"
-        },
-        {
-          "label": "Efficiency",
-          "key": "efficiency",
-          "value": null,
-          "controlType": "number",
-          "required":  true,
-          "order": 4,
-          "type":  "",
-          "options": [],
-          "unit":  ""
         }
       ]
     }

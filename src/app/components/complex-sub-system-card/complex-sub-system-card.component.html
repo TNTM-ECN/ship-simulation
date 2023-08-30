@@ -27,10 +27,10 @@
         </mat-form-field>
       </div>
       <div *ngIf="showedAttributes$ | async as showedAttributes" id="attributes">
-          <button *ngIf="showedAttributes.attributes.length>0" mat-button class="text-button">Load a {{showedAttributes.component_key}} configuration</button>
+          <button *ngIf="showedAttributes.attributes.length>0" mat-button class="text-button">Load a {{showedAttributes.component_key}} configuration</button> <!--This is not implemented-->
           <cdk-virtual-scroll-viewport itemSize="50" class="virtual-scroll">
             <div *cdkVirtualFor="let attribute of showedAttributes.attributes" class="example-item">
-              <app-dynamic-question [question]="attribute" [form]="form" [component]="showedAttributes.component_key">
+              <app-dynamic-question [question]="attribute" [form]="form" [system]="showedAttributes.component_key">
               </app-dynamic-question>
             </div>
           </cdk-virtual-scroll-viewport>
@@ -38,7 +38,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions [align]="'end'">
-    <button mat-raised-button class="text-button">Load a {{subSystem.name | lowercase}} configuration</button>
+    <button mat-raised-button class="text-button">Load a {{subSystem.name | lowercase}} configuration</button> <!--This is not implemented-->
     <button mat-raised-button class="text-button" (click)="dump()">Save parameters</button>
   </mat-card-actions>
 </mat-card>

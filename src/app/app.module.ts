@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { ButtonsLayerComponent } from './components/buttons-layer/buttons-layer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material.module";
-// import { PropulsionMenuComponent } from './components/propulsion-menu/propulsion-menu.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DynamicQuestionComponent } from './components/dynamic-question/dynamic-question.component';
 import { ComplexSubSystemCardComponent } from './components/complex-sub-system-card/complex-sub-system-card.component';
 import { UnitPipe } from "./pipes/unit.pipe";
@@ -16,7 +15,6 @@ import { UnitPipe } from "./pipes/unit.pipe";
   declarations: [
     AppComponent,
     ButtonsLayerComponent,
-    // PropulsionMenuComponent,
     DynamicQuestionComponent,
     ComplexSubSystemCardComponent,
     UnitPipe

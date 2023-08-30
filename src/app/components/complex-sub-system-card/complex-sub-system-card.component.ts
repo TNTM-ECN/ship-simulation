@@ -15,30 +15,62 @@ import {ComponentModel} from "../../models/component.model";
 import {combineLatest, delay, map, Observable, shareReplay, tap} from "rxjs";
 import {QuestionBaseModel} from "../../models/question-base.model";
 
+
+/**
+ * This component manages all the sub-system parametrization. It
+ */
 @Component({
   selector: 'app-complex-sub-system-card',
   templateUrl: './complex-sub-system-card.component.html',
   styleUrls: ['./complex-sub-system-card.component.sass']
 })
 export class ComplexSubSystemCardComponent implements OnInit {
+  /**
+   * Is the input representing all the parameters to set up for the sub system
+   */
   @Input() subSystem: SubSystemModel = {components: [{label:"", key:"", attributes:[]}], name:""};
+  /**
+   * Is the output to close the menu and this component.
+   */
   @Output() close: EventEmitter<string> = new EventEmitter<string>()
+  /**
+   * Is the form passed down by the button layer component.
+   */
+  @Input() fullForm!: FormGroup;
+  /**
+   * Is the updated form we give back to button layer component. It contains the parameters fixed by the user and the state of the card (enabled components and selected component)
+   */
   @Output() fullFormChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>()
 
-  @Input() fullForm!: FormGroup;
-  resultInit!: any
+  /**
+   * Is used to store the result of the form initialization, and eventually store previous values.
+   */
+  private resultInit!: any
+
+  /**
+   * Holds the parameters for the subsystems
+   */
   form!: FormGroup;
-  // Il manque d'un controle de l'état avec tous les controles annexes (ie checkbox et select)
-  // on va passer les controles annexes dans this.form
+  /**
+   * Holds the fields for the parameters
+   */
   checkboxControls!: FormGroup;
+  /**
+   * Holds the enabled components of the subsystem
+   */
   enabledComponents$!: Observable<ComponentModel[]>
+  /**
+   * Is used to select a component inside a subsystem to set it up.
+   */
   selectControl!: FormControl;
   enableSelect$!: Observable<boolean>
+  /**
+   * Is used to show the attributes of the component stored in selectControl.
+   */
   showedAttributes$!: Observable<{ attributes: QuestionBaseModel<any>[], component_key: string } | null>
 
 
   constructor(private scs: ComplexSubsystemControlService,
-              // private scards: SubsystemCardService,
               private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -56,7 +88,7 @@ export class ComplexSubSystemCardComponent implements OnInit {
   }
 
   initFormCtrl(): any {
-    const newForm = (Object.keys(this.fullForm.value).length === 0);
+    const newForm = (Object.keys(this.fullForm.value).length === 0);  // Will be used to know if we need to load data from the service or if we need to create them.
     let checkboxControlsValue, selectControlValue: any;
     let group: any = {};
     this.subSystem.components.forEach(component => {
@@ -64,9 +96,9 @@ export class ComplexSubSystemCardComponent implements OnInit {
     })
     this.checkboxControls = this.formBuilder.group(group)
     this.selectControl = this.formBuilder.control("")
-    if (newForm){
+    if (newForm){ // if there is no previous data, we build the form following the subsystem
       this.form = this.scs.toFormGroup(this.subSystem)
-    } else {
+    } else { // else we load the previous state
       selectControlValue = this.fullForm.get("selectControl")?.value
       checkboxControlsValue = this.fullForm.get("checkboxControls")?.value
       this.form = this.fullForm.get("form")! as FormGroup
@@ -81,7 +113,7 @@ export class ComplexSubSystemCardComponent implements OnInit {
   }
 
   initObservable() {
-    this.enabledComponents$ = this.checkboxControls.valueChanges.pipe(//tap(value => {console.log("control"); console.log(this.checkboxControls)}),
+    this.enabledComponents$ = this.checkboxControls.valueChanges.pipe(tap(value => {console.log("control"); console.log(this.checkboxControls)}),
       map(formValue => {  // On a un {key: value}
         return Object.entries(formValue)  // On a un [[key, value]]
           .filter(([_, enabled]) => enabled) // On a un [[key, value]] avec seulement les cas où value est true // on pourra ajouter un mécanisme pour desactiver le select
@@ -96,10 +128,10 @@ export class ComplexSubSystemCardComponent implements OnInit {
           this.selectControl.setValue("")
         }
       }),
-      // tap(value => {console.log("enabledComponents");console.log(value)})
+      tap(value => {console.log("enabledComponents");console.log(value)})
     )
     this.showedAttributes$ = combineLatest([
-      this.enabledComponents$,//.pipe(tap(value => console.log(value))),
+      this.enabledComponents$.pipe(tap(value => console.log(value))),
       this.selectControl.valueChanges.pipe(map(component_key => {
         try {
           return {
@@ -113,10 +145,10 @@ export class ComplexSubSystemCardComponent implements OnInit {
           }
         } // This try catch is here to make sure that if we enable a component, then close, then re-open, the observable is still properly created and everything works
       }))
-    ]).pipe(//tap(value => {console.log("showedAttributes");console.log(value)}),
+    ]).pipe(tap(value => {console.log("showedAttributes");console.log(value)}),
       map(pair => (pair[0].length>0)? pair[1] : null), // We keep only the attributes emitted by the combineLatest usage
     )
-    // console.log("Observable set")
+    console.log("Observable set")
   }
 
   onClose(){
@@ -126,7 +158,7 @@ export class ComplexSubSystemCardComponent implements OnInit {
   }
 
   dump(){
-    // console.log(this.form.getRawValue())
+    console.log(this.form.getRawValue())
     this.fullFormChange.emit(this.fullForm)
   }
 

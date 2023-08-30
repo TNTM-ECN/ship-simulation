@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ComplexSubSystemCardComponent } from './complex-sub-system-card.component';
+import {MaterialModule} from "../../material.module";
+import {DynamicQuestionComponent} from "../dynamic-question/dynamic-question.component";
 
-describe('SubSystemCardComponent', () => {
+describe('ComplexSubSystemCardComponent', () => {
   let component: ComplexSubSystemCardComponent;
   let fixture: ComponentFixture<ComplexSubSystemCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ComplexSubSystemCardComponent ]
+      imports: [ MaterialModule ],
+      declarations: [ ComplexSubSystemCardComponent, DynamicQuestionComponent ]
     })
     .compileComponents();
 

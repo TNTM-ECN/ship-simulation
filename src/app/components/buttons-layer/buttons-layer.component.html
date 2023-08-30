@@ -25,5 +25,6 @@
   <div id="inner-container">
     <app-complex-sub-system-card *ngSwitchCase="'propulsion'" [subSystem]="propulsion" (close)="buttonView($event)" [(fullForm)]="propulsionForm"></app-complex-sub-system-card>
     <app-complex-sub-system-card *ngSwitchCase="'empty'" [subSystem]="emptySubSystem" (close)="buttonView($event)" [(fullForm)]="emptyForm"></app-complex-sub-system-card>
+<!--    This is where there will be new lines for each susbsytem available-->
   </div>
 </div>

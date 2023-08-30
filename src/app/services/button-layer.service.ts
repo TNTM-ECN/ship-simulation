@@ -24,6 +24,10 @@ export class ButtonLayerService {
     this._enableButtons$.next(value)
   }
 
+  /**
+   * This update the view of the button-layer-component.
+   * @param subSystemName could be restricted to an empty string ("") and the available values for the subsystem
+   */
   public updateView(subSystemName: string): void {
     this.setEnableButtons(subSystemName === "");
     this.setSubsystemView(subSystemName)
