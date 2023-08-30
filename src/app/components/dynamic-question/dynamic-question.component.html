@@ -1,10 +1,10 @@
 <div [formGroup]="form">
-  <mat-form-field [formGroupName]="component">
+  <mat-form-field [formGroupName]="system">
     <mat-label [attr.for]="question.key">{{question.label}}</mat-label>
     <div [ngSwitch]="question.controlType">
       <input *ngSwitchCase="'number'" [formControlName]="question.key" matInput
              [id]="question.key" [type]="question.type">
-<!--      <mat-error *ngIf="!isValid">{{question.label}} is required</mat-error>-->
+      <mat-error *ngIf="!isValid">{{question.label}} is required</mat-error>
     </div>
     <span matTextSuffix [innerHTML]="question.unit | unit"></span>
   </mat-form-field>
